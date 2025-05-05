@@ -1,0 +1,120 @@
+(2025-05-05T07:43:01.398019385) (2025-05-05T07:43:01.398092885) [Msg] Gazebo Sim Server v8.9.0
+(2025-05-05T07:43:01.403370510) (2025-05-05T07:43:01.403431426) [Msg] Loading SDF world file[/opt/ros/jazzy/share/turtlebot3_gazebo/worlds/turtlebot3_house.world].
+(2025-05-05T07:43:01.479053051) (2025-05-05T07:43:01.479126926) [Wrn] [LocalCache.cc:104] Server directory does not exist [/root/.gz/fuel/fuel.gazebosim.org]
+(2025-05-05T07:43:01.479599926) (2025-05-05T07:43:01.479800343) [Msg] Downloading model [fuel.gazebosim.org/openrobotics/models/ground plane]
+(2025-05-05T07:43:02.572574885) (2025-05-05T07:43:02.572931969) [Dbg] [FuelClient.cc:1968] Downloading from a referral link [https://gz-fuel-resources-production.s3.amazonaws.com/OpenRobotics/0e89c80f-c5dd-416f-a365-c776bbf04a3a/.zips/5.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS5OHIRKDBY6VUUFF%2F20250505%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250505T074302Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=97133973531ab5b8c7338083edbeb82a2d13232882ebb750dcbf33ca05abf42d]
+(2025-05-05T07:43:03.635135886) (2025-05-05T07:43:03.635686886) [Dbg] [Zip.cc:180] Created file [/root/.gz/fuel/fuel.gazebosim.org/openrobotics/models/ground plane/5/model-1_2.sdf]
+(2025-05-05T07:43:03.637944094) (2025-05-05T07:43:03.638209844) [Dbg] [Zip.cc:180] Created file [/root/.gz/fuel/fuel.gazebosim.org/openrobotics/models/ground plane/5/model-1_3.sdf]
+(2025-05-05T07:43:03.639477511) (2025-05-05T07:43:03.639657636) [Dbg] [Zip.cc:180] Created file [/root/.gz/fuel/fuel.gazebosim.org/openrobotics/models/ground plane/5/model-1_4.sdf]
+(2025-05-05T07:43:03.640863969) (2025-05-05T07:43:03.641172302) [Dbg] [Zip.cc:180] Created file [/root/.gz/fuel/fuel.gazebosim.org/openrobotics/models/ground plane/5/model.config]
+(2025-05-05T07:43:03.642533177) (2025-05-05T07:43:03.642926719) [Dbg] [Zip.cc:180] Created file [/root/.gz/fuel/fuel.gazebosim.org/openrobotics/models/ground plane/5/model.sdf]
+(2025-05-05T07:43:03.645248219) (2025-05-05T07:43:03.645425511) [Dbg] [Zip.cc:180] Created file [/root/.gz/fuel/fuel.gazebosim.org/openrobotics/models/ground plane/5/thumbnails/1.png]
+(2025-05-05T07:43:03.646754719) (2025-05-05T07:43:03.646950344) [Dbg] [Zip.cc:180] Created file [/root/.gz/fuel/fuel.gazebosim.org/openrobotics/models/ground plane/5/thumbnails/2.png]
+(2025-05-05T07:43:03.647853761) (2025-05-05T07:43:03.647995927) [Dbg] [Zip.cc:180] Created file [/root/.gz/fuel/fuel.gazebosim.org/openrobotics/models/ground plane/5/thumbnails/3.png]
+(2025-05-05T07:43:03.648976802) (2025-05-05T07:43:03.649117344) [Dbg] [Zip.cc:180] Created file [/root/.gz/fuel/fuel.gazebosim.org/openrobotics/models/ground plane/5/thumbnails/4.png]
+(2025-05-05T07:43:03.650065136) (2025-05-05T07:43:03.650239719) [Dbg] [Zip.cc:180] Created file [/root/.gz/fuel/fuel.gazebosim.org/openrobotics/models/ground plane/5/thumbnails/5.png]
+(2025-05-05T07:43:03.751461469) (2025-05-05T07:43:03.751542928) [Msg] Downloading model [fuel.gazebosim.org/openrobotics/models/sun]
+(2025-05-05T07:43:04.749583845) (2025-05-05T07:43:04.749963053) [Dbg] [FuelClient.cc:1968] Downloading from a referral link [https://gz-fuel-resources-production.s3.amazonaws.com/OpenRobotics/0aa70676-89ef-4553-b1a2-464131ad8155/.zips/3.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS5OHIRKDBY6VUUFF%2F20250505%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250505T074304Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=831923cc61168cc1eef2df74f15e12149c949ab01aadc07da11fd6bd7678477b]
+(2025-05-05T07:43:05.473895303) (2025-05-05T07:43:05.474249553) [Dbg] [Zip.cc:180] Created file [/root/.gz/fuel/fuel.gazebosim.org/openrobotics/models/sun/3/model-1_2.sdf]
+(2025-05-05T07:43:05.476104720) (2025-05-05T07:43:05.476454720) [Dbg] [Zip.cc:180] Created file [/root/.gz/fuel/fuel.gazebosim.org/openrobotics/models/sun/3/model-1_3.sdf]
+(2025-05-05T07:43:05.477948470) (2025-05-05T07:43:05.478270095) [Dbg] [Zip.cc:180] Created file [/root/.gz/fuel/fuel.gazebosim.org/openrobotics/models/sun/3/model-1_4.sdf]
+(2025-05-05T07:43:05.480011553) (2025-05-05T07:43:05.480339887) [Dbg] [Zip.cc:180] Created file [/root/.gz/fuel/fuel.gazebosim.org/openrobotics/models/sun/3/model.config]
+(2025-05-05T07:43:05.481747928) (2025-05-05T07:43:05.481915428) [Dbg] [Zip.cc:180] Created file [/root/.gz/fuel/fuel.gazebosim.org/openrobotics/models/sun/3/model.sdf]
+(2025-05-05T07:43:05.850168762) (2025-05-05T07:43:05.850476345) [Msg] Serving entity system service on [/entity/system/add]
+(2025-05-05T07:43:05.926898054) (2025-05-05T07:43:05.926971220) [Dbg] [Physics.cc:883] Loaded [gz::physics::dartsim::Plugin] from library [/opt/ros/jazzy/opt/gz_physics_vendor/lib/gz-physics-7/engine-plugins/libgz-physics-dartsim-plugin.so]
+(2025-05-05T07:43:05.927184220) (2025-05-05T07:43:05.927247012) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::Physics] for entity [1]
+(2025-05-05T07:43:05.929354512) (2025-05-05T07:43:05.929411804) [Msg] Create service on [/world/default/create]
+(2025-05-05T07:43:05.929628970) (2025-05-05T07:43:05.929695179) [Msg] Remove service on [/world/default/remove]
+(2025-05-05T07:43:05.929923054) (2025-05-05T07:43:05.929988262) [Msg] Pose service on [/world/default/set_pose]
+(2025-05-05T07:43:05.930183095) (2025-05-05T07:43:05.930245345) [Msg] Pose service on [/world/default/set_pose_vector]
+(2025-05-05T07:43:05.930464720) (2025-05-05T07:43:05.930523679) [Msg] Light configuration service on [/world/default/light_config]
+(2025-05-05T07:43:05.930776137) (2025-05-05T07:43:05.930835054) [Msg] Physics service on [/world/default/set_physics]
+(2025-05-05T07:43:05.931050345) (2025-05-05T07:43:05.931108679) [Msg] SphericalCoordinates service on [/world/default/set_spherical_coordinates]
+(2025-05-05T07:43:05.931280970) (2025-05-05T07:43:05.931339137) [Msg] Enable collision service on [/world/default/enable_collision]
+(2025-05-05T07:43:05.931513804) (2025-05-05T07:43:05.931571845) [Msg] Disable collision service on [/world/default/disable_collision]
+(2025-05-05T07:43:05.931769012) (2025-05-05T07:43:05.931826304) [Msg] Material service on [/world/default/visual_config]
+(2025-05-05T07:43:05.932066262) (2025-05-05T07:43:05.932125345) [Msg] Material service on [/world/default/wheel_slip]
+(2025-05-05T07:43:05.932281179) (2025-05-05T07:43:05.932336970) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::UserCommands] for entity [1]
+(2025-05-05T07:43:05.933694679) (2025-05-05T07:43:05.933780262) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::SceneBroadcaster] for entity [1]
+(2025-05-05T07:43:05.943952845) (2025-05-05T07:43:05.944044929) [Dbg] [Sensors.cc:697] Configuring Sensors system
+(2025-05-05T07:43:05.944198554) (2025-05-05T07:43:05.944256804) [Dbg] [Sensors.cc:557] SensorsPrivate::Run
+(2025-05-05T07:43:05.944466262) (2025-05-05T07:43:05.944562720) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::Sensors] for entity [1]
+(2025-05-05T07:43:05.944858304) (2025-05-05T07:43:05.944978345) [Dbg] [Sensors.cc:532] SensorsPrivate::RenderThread started
+(2025-05-05T07:43:05.945155845) (2025-05-05T07:43:05.945231345) [Dbg] [Sensors.cc:337] Waiting for init
+(2025-05-05T07:43:05.946231137) (2025-05-05T07:43:05.946287470) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::Imu] for entity [1]
+(2025-05-05T07:43:05.949461220) (2025-05-05T07:43:05.949522220) [Msg] Loaded level [default]
+(2025-05-05T07:43:05.950744304) (2025-05-05T07:43:05.950806429) [Wrn] [Conversions.cc:735] <gui><camera> can't be converted yet
+(2025-05-05T07:43:05.951868095) (2025-05-05T07:43:05.951984929) [Msg] Serving world controls on [/world/default/control], [/world/default/control/state] and [/world/default/playback/control]
+(2025-05-05T07:43:05.952388012) (2025-05-05T07:43:05.952446262) [Wrn] [Conversions.cc:735] <gui><camera> can't be converted yet
+(2025-05-05T07:43:05.952889512) (2025-05-05T07:43:05.952989179) [Msg] Serving GUI information on [/world/default/gui/info]
+(2025-05-05T07:43:05.953270095) (2025-05-05T07:43:05.953330970) [Msg] World [default] initialized with [default_physics] physics profile.
+(2025-05-05T07:43:05.953624345) (2025-05-05T07:43:05.953687012) [Msg] Serving world SDF generation service on [/world/default/generate_world_sdf]
+(2025-05-05T07:43:05.954025554) (2025-05-05T07:43:05.954099929) [Msg] Serving world names on [/gazebo/worlds]
+(2025-05-05T07:43:06.55557970) (2025-05-05T07:43:06.55768470) [Msg] Resource path add service on [/gazebo/resource_paths/add].
+(2025-05-05T07:43:06.56396887) (2025-05-05T07:43:06.57314304) [Msg] Resource path get service on [/gazebo/resource_paths/get].
+(2025-05-05T07:43:06.58211720) (2025-05-05T07:43:06.58514304) [Msg] Resource path resolve service on [/gazebo/resource_paths/resolve].
+(2025-05-05T07:43:06.59162345) (2025-05-05T07:43:06.59522012) [Msg] Resource paths published on [/gazebo/resource_paths].
+(2025-05-05T07:43:06.60598637) (2025-05-05T07:43:06.61026970) [Msg] Server control service on [/server_control].
+(2025-05-05T07:43:06.62238095) (2025-05-05T07:43:06.62785012) [Msg] Found no publishers on /stats, adding root stats topic
+(2025-05-05T07:43:06.63414429) (2025-05-05T07:43:06.63649637) [Msg] Found no publishers on /clock, adding root clock topic
+(2025-05-05T07:43:06.64366345) (2025-05-05T07:43:06.64580720) [Dbg] [SimulationRunner.cc:533] Creating PostUpdate worker threads: 4
+(2025-05-05T07:43:06.64908679) (2025-05-05T07:43:06.65035095) [Dbg] [SimulationRunner.cc:544] Creating postupdate worker thread (0)
+(2025-05-05T07:43:06.65472387) (2025-05-05T07:43:06.65602720) [Dbg] [SimulationRunner.cc:544] Creating postupdate worker thread (1)
+(2025-05-05T07:43:06.65976929) (2025-05-05T07:43:06.66118595) [Dbg] [SimulationRunner.cc:544] Creating postupdate worker thread (2)
+(2025-05-05T07:43:06.145590720) (2025-05-05T07:43:06.145706220) [Msg] DiffDrive subscribing to twist messages on [cmd_vel]
+(2025-05-05T07:43:06.145886012) (2025-05-05T07:43:06.145943720) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::DiffDrive] for entity [271]
+(2025-05-05T07:43:06.147218804) (2025-05-05T07:43:06.147275054) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::JointStatePublisher] for entity [271]
+(2025-05-05T07:43:06.147489804) (2025-05-05T07:43:06.147544345) [Dbg] [UserCommands.cc:1318] Created entity [271] named [waffle]
+(2025-05-05T07:43:06.151981470) (2025-05-05T07:43:06.152074262) [Dbg] [SDFFeatures.cc:332] Mesh construction from an SDF has not been implemented yet for dartsim. Use AttachMeshShapeFeature to use mesh shapes.
+(2025-05-05T07:43:06.152287470) (2025-05-05T07:43:06.152365054) [Dbg] [SDFFeatures.cc:864] The geometry element of collision [collision] couldn't be created
+(2025-05-05T07:43:06.157092012) (2025-05-05T07:43:06.157189220) [Dbg] [SDFFeatures.cc:332] Mesh construction from an SDF has not been implemented yet for dartsim. Use AttachMeshShapeFeature to use mesh shapes.
+(2025-05-05T07:43:06.157340137) (2025-05-05T07:43:06.157411679) [Dbg] [SDFFeatures.cc:864] The geometry element of collision [collision] couldn't be created
+(2025-05-05T07:43:06.157664512) (2025-05-05T07:43:06.157737470) [Dbg] [SDFFeatures.cc:332] Mesh construction from an SDF has not been implemented yet for dartsim. Use AttachMeshShapeFeature to use mesh shapes.
+(2025-05-05T07:43:06.157880262) (2025-05-05T07:43:06.157953429) [Dbg] [SDFFeatures.cc:864] The geometry element of collision [collision] couldn't be created
+(2025-05-05T07:43:06.158524304) (2025-05-05T07:43:06.158604637) [Dbg] [SDFFeatures.cc:332] Mesh construction from an SDF has not been implemented yet for dartsim. Use AttachMeshShapeFeature to use mesh shapes.
+(2025-05-05T07:43:06.158750387) (2025-05-05T07:43:06.158817262) [Dbg] [SDFFeatures.cc:864] The geometry element of collision [collision] couldn't be created
+(2025-05-05T07:43:06.215690429) (2025-05-05T07:43:06.215838262) [Dbg] [Sensors.cc:953] Initialization needed
+(2025-05-05T07:43:06.216327095) (2025-05-05T07:43:06.216483429) [Dbg] [ImuSensor.cc:150] IMU data for [waffle::imu_link::tb3_imu] advertised on [imu]
+(2025-05-05T07:43:06.217089262) (2025-05-05T07:43:06.217275262) [Dbg] [Sensors.cc:349] Initializing render context
+(2025-05-05T07:43:06.217663554) (2025-05-05T07:43:06.217835262) [Msg] Serving scene information on [/world/default/scene/info]
+(2025-05-05T07:43:06.218443429) (2025-05-05T07:43:06.218598387) [Msg] Loading plugin [gz-rendering-ogre2]
+(2025-05-05T07:43:06.219111345) (2025-05-05T07:43:06.219244387) [Msg] Serving graph information on [/world/default/scene/graph]
+(2025-05-05T07:43:06.219860929) (2025-05-05T07:43:06.220001929) [Msg] Serving full state on [/world/default/state]
+(2025-05-05T07:43:06.220560095) (2025-05-05T07:43:06.220689095) [Msg] Serving full state (async) on [/world/default/state_async]
+(2025-05-05T07:43:06.221487137) (2025-05-05T07:43:06.221601845) [Msg] Publishing scene information on [/world/default/scene/info]
+(2025-05-05T07:43:06.222112012) (2025-05-05T07:43:06.222239845) [Msg] Publishing entity deletions on [/world/default/scene/deletion]
+(2025-05-05T07:43:06.222612637) (2025-05-05T07:43:06.222731887) [Msg] Publishing state changes on [/world/default/state]
+(2025-05-05T07:43:06.223084970) (2025-05-05T07:43:06.223204345) [Msg] Publishing pose messages on [/world/default/pose/info]
+(2025-05-05T07:43:06.223631554) (2025-05-05T07:43:06.223751387) [Msg] Publishing dynamic pose messages on [/world/default/dynamic_pose/info]
+(2025-05-05T07:43:06.224960595) (2025-05-05T07:43:06.225148595) [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (0)
+(2025-05-05T07:43:06.225486595) (2025-05-05T07:43:06.225601679) [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (2)
+(2025-05-05T07:43:06.225851720) (2025-05-05T07:43:06.225986095) [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (1)
+(2025-05-05T07:43:06.226331762) (2025-05-05T07:43:06.226392804) [Dbg] [SimulationRunner.cc:533] Creating PostUpdate worker threads: 6
+(2025-05-05T07:43:06.226536387) (2025-05-05T07:43:06.226596137) [Dbg] [SimulationRunner.cc:544] Creating postupdate worker thread (0)
+(2025-05-05T07:43:06.241228679) (2025-05-05T07:43:06.241304512) [Dbg] [SimulationRunner.cc:544] Creating postupdate worker thread (1)
+(2025-05-05T07:43:06.241539179) (2025-05-05T07:43:06.241607929) [Dbg] [SimulationRunner.cc:544] Creating postupdate worker thread (2)
+(2025-05-05T07:43:06.242050845) (2025-05-05T07:43:06.242163554) [Dbg] [SimulationRunner.cc:544] Creating postupdate worker thread (3)
+(2025-05-05T07:43:06.242424262) (2025-05-05T07:43:06.242544012) [Wrn] [Ogre2RenderEngine.cc:551] (2025-05-05T07:43:06.242899804) (2025-05-05T07:43:06.242973179) [Dbg] [SimulationRunner.cc:544] Creating postupdate worker thread (4)
+Unable to open display: . Trying to run in headless mode.
+(2025-05-05T07:43:06.684058471) (2025-05-05T07:43:06.684126012) [Dbg] [RenderUtil.cc:2643] Create scene [scene]
+(2025-05-05T07:43:06.938910929) (2025-05-05T07:43:06.939003679) (2025-05-05T07:43:06.939121346) (2025-05-05T07:43:06.939257846) [Dbg] [Sensors.cc:391] Rendering Thread initialized
+[Dbg] [Sensors.cc:953] Initialization needed
+(2025-05-05T07:43:07.138909096) (2025-05-05T07:43:07.138976096) [Err] [SystemPaths.cc:525] Could not resolve file [Wood_Floor_Dark.jpg]
+(2025-05-05T07:43:07.141367387) (2025-05-05T07:43:07.141472387) [Err] [SystemPaths.cc:525] Could not resolve file [Maple.jpg]
+(2025-05-05T07:43:07.653424388) (2025-05-05T07:43:07.653552263) [Dbg] [CameraSensor.cc:405] Camera images for [waffle::camera_rgb_frame::camera] advertised on [camera/image_raw]
+(2025-05-05T07:43:07.654205388) (2025-05-05T07:43:07.654323304) [Dbg] [CameraSensor.cc:695] Camera info for [waffle::camera_rgb_frame::camera] advertised on [camera/camera_info]
+(2025-05-05T07:43:07.654914388) (2025-05-05T07:43:07.655025471) [Wrn] [Ogre2Camera.cc:421] Ogre2Camera::SetVisibilityMask: Mask bits c0000000 are set but will be ignored as they conflict with the reserved bits used internally by the ogre2 backend.
+(2025-05-05T07:43:07.656464304) (2025-05-05T07:43:07.656657638) [Dbg] [Lidar.cc:139] Laser scans for [waffle::base_scan::hls_lfcd_lds] advertised on [scan]
+(2025-05-05T07:43:07.657406888) (2025-05-05T07:43:07.657500763) [Dbg] [GpuLidarSensor.cc:164] Lidar points for [waffle::base_scan::hls_lfcd_lds] advertised on [scan/points]
+(2025-05-05T07:43:07.766350929) (2025-05-05T07:43:07.766477846) [Dbg] [CameraSensor.cc:504] Enabling camera sensor: 'waffle::camera_rgb_frame::camera' data generation.
+(2025-05-05T07:43:24.804757923) (2025-05-05T07:43:24.806525215) [Dbg] [SignalHandler.cc:142] Received signal[2].
+(2025-05-05T07:43:24.814636715) (2025-05-05T07:43:24.821367673) [Dbg] [ServerPrivate.cc:122] Server received signal[2]
+(2025-05-05T07:43:24.825238215) (2025-05-05T07:43:24.829186840) [Dbg] [Sensors.cc:565] SensorsPrivate::Stop
+(2025-05-05T07:43:25.12397298) (2025-05-05T07:43:25.12507757) [Dbg] [Sensors.cc:551] SensorsPrivate::RenderThread stopped
+(2025-05-05T07:43:25.12916257) (2025-05-05T07:43:25.12982465) [Dbg] [gz.cc:434] Shutting down gz-sim-server
+(2025-05-05T07:43:25.55753340) (2025-05-05T07:43:25.55921340) [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (1)
+(2025-05-05T07:43:25.56444298) (2025-05-05T07:43:25.56616715) [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (4)
+(2025-05-05T07:43:25.57066215) (2025-05-05T07:43:25.57228215) [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (2)
+(2025-05-05T07:43:25.57687423) (2025-05-05T07:43:25.57844632) [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (0)
+(2025-05-05T07:43:25.58341590) (2025-05-05T07:43:25.58482423) [Dbg] [SimulationRunner.cc:560] Exiting postupdate worker thread (3)
+(2025-05-05T07:43:25.211468465) (2025-05-05T07:43:25.211585132) [Dbg] [Sensors.cc:565] SensorsPrivate::Stop
