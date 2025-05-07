@@ -30,6 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  dynamic_color: ^1.7.0
   flutter_mjpeg: ^2.0.4
   web_socket_channel: ^3.0.2
 
