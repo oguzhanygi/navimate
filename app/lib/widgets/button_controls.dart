@@ -7,8 +7,7 @@ class ButtonControls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colors = theme.colorScheme;
+    final colors = Theme.of(context).colorScheme;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -28,11 +27,11 @@ class ButtonControls extends StatelessWidget {
   }
 
   Widget _buildNavButton(
-      ColorScheme colors,
-      IconData icon,
-      double linear,
-      double angular,
-      ) {
+    ColorScheme colors,
+    IconData icon,
+    double linear,
+    double angular,
+  ) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: IconButton(
