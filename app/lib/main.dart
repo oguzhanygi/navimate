@@ -1,11 +1,19 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'config/fallback_themes.dart';
 import 'screens/home_screen.dart';
+import 'services/settings_service.dart';
 
-void main() {
-  runApp(const NaviMateApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final settings = SettingsService();
+  await settings.loadSettings();
+
+  runApp(
+    ChangeNotifierProvider.value(value: settings, child: const NaviMateApp()),
+  );
 }
 
 class NaviMateApp extends StatelessWidget {
@@ -15,21 +23,21 @@ class NaviMateApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return DynamicColorBuilder(
       builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
+        final settings = Provider.of<SettingsService>(context);
+
         final light =
-            lightDynamic != null
+            settings.useDynamicColor && lightDynamic != null
                 ? ThemeData(colorScheme: lightDynamic, useMaterial3: true)
-                // Fallback for older systems
                 : lightTheme;
 
         final dark =
-            darkDynamic != null
+            settings.useDynamicColor && darkDynamic != null
                 ? ThemeData(colorScheme: darkDynamic, useMaterial3: true)
-                // Fallback for older systems
                 : darkTheme;
 
         return MaterialApp(
           title: 'NaviMate',
-          themeMode: ThemeMode.system,
+          themeMode: settings.themeMode,
           theme: light,
           darkTheme: dark,
           home: const HomeScreen(),

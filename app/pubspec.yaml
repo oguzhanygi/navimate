@@ -31,6 +31,8 @@ dependencies:
   flutter:
     sdk: flutter
   dynamic_color: ^1.7.0
+  provider: ^6.1.5
+  shared_preferences: ^2.5.3
   flutter_mjpeg: ^2.0.4
   web_socket_channel: ^3.0.2
 
