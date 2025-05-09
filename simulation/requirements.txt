@@ -3,4 +3,4 @@ uvicorn
 uvicorn[standard]
 PyYAML
 numpy
-
+PILLOW
