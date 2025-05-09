@@ -6,6 +6,7 @@ ThemeData lightTheme = ThemeData(
   colorScheme: ColorScheme.light(
     primary: Colors.blue,
     secondary: Colors.blueAccent,
+    inversePrimary: Colors.blue,
     surface: Colors.white,
   ),
   useMaterial3: true,
@@ -17,6 +18,7 @@ ThemeData darkTheme = ThemeData(
   colorScheme: ColorScheme.dark(
     primary: Colors.blue,
     secondary: Colors.blueAccent,
+    inversePrimary: Colors.blue,
     surface: Colors.grey[900]!,
   ),
   useMaterial3: true,
