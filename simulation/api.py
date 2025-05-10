@@ -1,23 +1,28 @@
 import rclpy
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 from rclpy.node import Node
-from geometry_msgs.msg import TwistStamped, PoseStamped
+from rclpy.executors import MultiThreadedExecutor
+from geometry_msgs.msg import TwistStamped, PoseStamped, PoseWithCovarianceStamped
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException, Query
 from fastapi.responses import FileResponse
 from typing import Optional
-import uvicorn
-import threading
+from threading import Thread, Lock
 import json
 import os
 from helper import pgm_to_png
-from models import goalInput, status
+from models import goalInput, status, positionOutput
 
 app = FastAPI()
 ros_node = None
+amcl_node = None
 spin_thread = None
 navigator = None
 
+amcl_data = {"x": 0.0, "y": 0.0}
+amcl_lock = Lock()
+
 class CmdVelPublisher(Node):
+    
     def __init__(self):
         super().__init__('websocket_cmd_vel_publisher')
         self.publisher = self.create_publisher(TwistStamped, '/cmd_vel', 10)
@@ -31,12 +36,42 @@ class CmdVelPublisher(Node):
         self.publisher.publish(msg)
         self.get_logger().info(f"Published: linear={linear}, angular={angular}")
 
+class AMCLListener(Node):
+
+    def __init__(self):
+        super().__init__('amcl_listener_node')
+        self.amcl_pose = None
+
+        self.create_subscription(
+            PoseWithCovarianceStamped,
+            '/amcl_pose',
+            self.amcl_callback,
+            10
+        )
+
+    def amcl_callback(self, msg):
+        self.get_logger().info("Received AMCL pose")
+        self.amcl_pose = msg
+        with amcl_lock:
+            amcl_data['x'] = msg.pose.pose.position.x
+            amcl_data['y'] = msg.pose.pose.position.y
+
 @app.on_event("startup")
 def on_startup():
-    global ros_node, spin_thread, navigator
+    global ros_node, navigator, amcl_node, spin_thread
     rclpy.init()
     ros_node = CmdVelPublisher()
     navigator = BasicNavigator()
+    amcl_node = AMCLListener()
+
+    executor = MultiThreadedExecutor()
+    executor.add_node(ros_node)
+    executor.add_node(navigator)
+    executor.add_node(amcl_node)
+
+    spin_thread = Thread(target=executor.spin, daemon=True)
+    spin_thread.start()
+    navigator.waitUntilNav2Active()
 
 @app.on_event("shutdown")
 def on_shutdown():
@@ -70,7 +105,7 @@ def get_map(map_name: Optional[str] = Query(default='turtlebot3_house')):
 @app.get("/voice/backup", response_model = status)
 def backup(backup_dist: Optional[float] = 0.30, backup_speed: Optional[float] = 0.2, time_allowance: Optional[int] = 10):
     
-    navigator.waitUntilNav2Active()
+    navigator.cancelTask()
     task = navigator.backup(backup_dist, backup_speed, time_allowance)
 
     i = 0
@@ -78,10 +113,13 @@ def backup(backup_dist: Optional[float] = 0.30, backup_speed: Optional[float] = 
         i = i + 1
         feedback = navigator.getFeedback() 
         if feedback and i % 5 == 0:
-            print(
-                'Distance traveled: '
-                + f'{feedback.distance_traveled:.3f}'
-            )
+            try:
+                print(
+                    'Distance traveled: '
+                    + f'{feedback.distance_traveled:.3f}'
+                )
+            except Exception as e:
+                print(f"Error at backup feedback: {e}")
 
     result = navigator.getResult()
     if result == TaskResult.SUCCEEDED:
@@ -99,14 +137,12 @@ def backup(backup_dist: Optional[float] = 0.30, backup_speed: Optional[float] = 
 
 @app.post("/set_goal", response_model = status)
 def set_goal(goal: goalInput):
+    if not amcl_node.amcl_pose:
+        raise HTTPException(status_code=503, detail="AMCL pose not yet received")
 
     initial_pose = PoseStamped()
-    initial_pose.header.frame_id = 'map'
-    initial_pose.header.stamp = navigator.get_clock().now().to_msg()
-    initial_pose.pose.position.x = 0.0
-    initial_pose.pose.position.y = 0.0
-    initial_pose.pose.orientation.z = 0.0
-    initial_pose.pose.orientation.w = 1.0
+    initial_pose.header = amcl_node.amcl_pose.header
+    initial_pose.pose = amcl_node.amcl_pose.pose.pose
 
     goal_pose = PoseStamped()
     goal_pose.header.frame_id = 'map'
@@ -114,7 +150,7 @@ def set_goal(goal: goalInput):
     goal_pose.pose.position.x = goal.x
     goal_pose.pose.position.y = goal.y
     goal_pose.pose.orientation.w = 1.0
-    navigator.waitUntilNav2Active()
+    navigator.cancelTask()
 
      # Get the path, smooth it
     path = navigator.getPath(initial_pose, goal_pose)
@@ -128,12 +164,15 @@ def set_goal(goal: goalInput):
         i += 1
         feedback = navigator.getFeedback()
         if feedback and i % 5 == 0:
-            print(
-                'Estimated distance remaining to goal position: '
-                + f'{feedback.distance_to_goal:.3f}'
-                + '\nCurrent speed of the robot: '
-                + f'{feedback.speed:.3f}'
-            )
+            try:
+                print(
+                    'Estimated distance remaining to goal position: '
+                    + f'{feedback.distance_to_goal:.3f}'
+                    + '\nCurrent speed of the robot: '
+                    + f'{feedback.speed:.3f}'
+                )
+            except Exception as e:
+                print(f"Error at goal feedback: {e}")
 
     result = navigator.getResult()
     if result == TaskResult.SUCCEEDED:
@@ -145,6 +184,11 @@ def set_goal(goal: goalInput):
         return status(status = "failed")
     else:
         return status(status = "unknown")
+    
+@app.get("/position", response_model = positionOutput)
+def get_amcl_pose():
+    with amcl_lock:
+        return positionOutput(x = amcl_data["x"], y = amcl_data["y"])
 
 @app.websocket("/ws/cmd_vel")
 async def websocket_cmd_vel(websocket: WebSocket):

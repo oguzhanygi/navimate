@@ -1,0 +1,7 @@
+services:
+  navimate:
+    image: navimate
+    container_name: navimate
+    ports:
+      - "8000:8000"
+      - "8080:8080"

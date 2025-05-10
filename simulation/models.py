@@ -7,3 +7,6 @@ class goalInput(BaseModel):
 class status(BaseModel):
     status: str
 
+class positionOutput(BaseModel):
+    x: float
+    y: float
