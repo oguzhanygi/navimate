@@ -2,7 +2,7 @@ import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'config/fallback_themes.dart';
+import 'config/app_config.dart';
 import 'screens/home_screen.dart';
 import 'services/settings_service.dart';
 
@@ -28,12 +28,12 @@ class NaviMateApp extends StatelessWidget {
         final light =
             settings.useDynamicColor && lightDynamic != null
                 ? ThemeData(colorScheme: lightDynamic, useMaterial3: true)
-                : lightTheme;
+                : AppConfig.lightTheme;
 
         final dark =
             settings.useDynamicColor && darkDynamic != null
                 ? ThemeData(colorScheme: darkDynamic, useMaterial3: true)
-                : darkTheme;
+                : AppConfig.darkTheme;
 
         return MaterialApp(
           title: 'NaviMate',
