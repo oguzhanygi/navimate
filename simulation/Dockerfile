@@ -31,8 +31,9 @@ RUN pip install --upgrade pip && pip install -r /root/requirements.txt
 # Copy gazebo fuel files (Needed for offline run)
 COPY gz_files /root/.gz
 
-# Copy the modified launch file (Needed to run without the client)
-COPY ./my_launches/turtlebot3_house.launch.py /opt/ros/jazzy/share/turtlebot3_gazebo/launch/
+# Copy the modified files
+COPY ./miscellaneous/turtlebot3_house.launch.py /opt/ros/jazzy/share/turtlebot3_gazebo/launch/
+COPY ./miscellaneous/waffle.yaml /opt/ros/jazzy/share/turtlebot3_navigation2/param/waffle.yaml
 
 # Copy the source files
 COPY api.py /root/api.py

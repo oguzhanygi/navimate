@@ -3,12 +3,13 @@ from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 from rclpy.node import Node
 from rclpy.executors import MultiThreadedExecutor
 from geometry_msgs.msg import TwistStamped, PoseStamped, PoseWithCovarianceStamped
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException, Query
-from fastapi.responses import FileResponse
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException, Query, Request
+from fastapi.responses import FileResponse, StreamingResponse
 from typing import Optional
 from threading import Thread, Lock
 import json
 import os
+import httpx
 from helper import pgm_to_png
 from models import goalInput, status, positionOutput
 
@@ -80,7 +81,7 @@ def on_shutdown():
     navigator.destroyNode()
     rclpy.shutdown()
 
-@app.get("/get_map")
+@app.get("/map", summary="Get map image by name")
 def get_map(map_name: Optional[str] = Query(default='turtlebot3_house')):
     if not map_name:
         raise HTTPException(status_code=400, detail="Missing map_name query parameter.")
@@ -135,7 +136,7 @@ def backup(backup_dist: Optional[float] = 0.30, backup_speed: Optional[float] = 
     else:
         return status(status = "unknown")
 
-@app.post("/set_goal", response_model = status)
+@app.post("/robot/goal", response_model=status, summary="Set a navigation goal")
 def set_goal(goal: goalInput):
     if not amcl_node.amcl_pose:
         raise HTTPException(status_code=503, detail="AMCL pose not yet received")
@@ -185,12 +186,12 @@ def set_goal(goal: goalInput):
     else:
         return status(status = "unknown")
     
-@app.get("/position", response_model = positionOutput)
+@app.get("/robot/position", response_model=positionOutput, summary="Get robot position from AMCL")
 def get_amcl_pose():
     with amcl_lock:
         return positionOutput(x = amcl_data["x"], y = amcl_data["y"])
 
-@app.websocket("/ws/cmd_vel")
+@app.websocket("/robot/velocity")
 async def websocket_cmd_vel(websocket: WebSocket):
     await websocket.accept()
     try:
@@ -206,3 +207,38 @@ async def websocket_cmd_vel(websocket: WebSocket):
                 await websocket.send_text(f"Error parsing: {e}")
     except WebSocketDisconnect:
         print("WebSocket disconnected")
+
+@app.get("/camera/stream")
+async def stream_camera(request: Request, topic: str = Query("/camera/image_raw")):
+    url = f"http://127.0.0.1:8080/stream?topic={topic}"
+    boundary = "frame"
+
+    # JPEG start/end markers
+    JPEG_START = b'\xff\xd8'
+    JPEG_END = b'\xff\xd9'
+
+    async def generate():
+        try:
+            async with httpx.AsyncClient() as client:
+                async with client.stream("GET", url) as response:
+                    if response.status_code != 200:
+                        raise HTTPException(status_code=response.status_code, detail="Error fetching stream")
+
+                    buffer = b""
+                    async for chunk in response.aiter_bytes():
+                        buffer += chunk
+                        while JPEG_START in buffer and JPEG_END in buffer:
+                            start = buffer.find(JPEG_START)
+                            end = buffer.find(JPEG_END, start) + 2
+                            if end > start:
+                                frame = buffer[start:end]
+                                buffer = buffer[end:]
+                                yield (
+                                    f"--{boundary}\r\n"
+                                    f"Content-Type: image/jpeg\r\n"
+                                    f"Content-Length: {len(frame)}\r\n\r\n"
+                                ).encode("utf-8") + frame + b"\r\n"
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"Failed to stream: {str(e)}")
+
+    return StreamingResponse(generate(), media_type=f"multipart/x-mixed-replace; boundary={boundary}")
