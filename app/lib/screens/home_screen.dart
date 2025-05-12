@@ -16,10 +16,13 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text("NaviMate", style: TextStyle(fontSize: 24)),
-          backgroundColor: colors.inversePrimary,
+          backgroundColor: colors.primary,
+          foregroundColor: colors.surface,
           bottom: TabBar(
             tabs: [Tab(text: "Camera"), Tab(text: "Map")],
-            labelColor: colors.inverseSurface,
+            labelColor: colors.surface,
+            indicatorColor: colors.onSurface,
+            unselectedLabelColor: colors.surface.withValues(alpha: 0.8),
           ),
         ),
         drawer: const SettingsDrawer(),

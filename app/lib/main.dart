@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'config/app_config.dart';
 import 'screens/home_screen.dart';
 import 'services/settings_service.dart';
+import 'services/ros_socket_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,7 +13,19 @@ void main() async {
   await settings.loadSettings();
 
   runApp(
-    ChangeNotifierProvider.value(value: settings, child: const NaviMateApp()),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<SettingsService>.value(value: settings),
+        ProxyProvider<SettingsService, RosSocketService>(
+          update:
+              (_, settings, previous) => RosSocketService(
+                AppConfig.velocityWebSocketUrl(settings.ip, settings.port),
+              ),
+          dispose: (_, rosService) => rosService.close(),
+        ),
+      ],
+      child: const NaviMateApp(),
+    ),
   );
 }
 

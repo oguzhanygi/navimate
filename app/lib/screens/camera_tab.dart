@@ -15,21 +15,15 @@ class CameraTab extends StatefulWidget {
 }
 
 class _CameraTabState extends State<CameraTab> {
-  late RosSocketService _rosService;
-
-  @override
-  void initState() {
-    super.initState();
-    _rosService = RosSocketService(AppConfig.velocityWebSocketUrl);
-  }
-
   void _sendCommand(double linear, double angular) {
-    _rosService.sendCommand(linear, angular);
+    final rosService = Provider.of<RosSocketService>(context, listen: false);
+    rosService.sendCommand(linear, angular);
   }
 
   @override
   void dispose() {
-    _rosService.close();
+    final rosService = Provider.of<RosSocketService>(context, listen: false);
+    rosService.close();
     super.dispose();
   }
 
@@ -42,7 +36,11 @@ class _CameraTabState extends State<CameraTab> {
       child: Column(
         children: [
           Expanded(
-            child: Center(child: StreamWidget(AppConfig.cameraStreamUrl)),
+            child: Center(
+              child: StreamWidget(
+                AppConfig.cameraStreamUrl(settings.ip, settings.port),
+              ),
+            ),
           ),
           Expanded(
             child: Center(

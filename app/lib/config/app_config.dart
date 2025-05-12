@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 
 class AppConfig {
-  // IP address of the server
-  static const String baseUrl = '192.168.251.173:8000';
-
-  // Endpoints
-  static const String cameraStreamUrl = 'http://$baseUrl/camera/stream';
-  static const String velocityWebSocketUrl = 'ws://$baseUrl/robot/velocity';
-  static const String mapUrl = 'http://$baseUrl/map?map_name=turtlebot3_house';
-  static const String goalUrl = 'http://$baseUrl/robot/goal';
-  static const String positionUrl = 'http://$baseUrl/robot/position';
+  // Dynamic URL generators
+  static String baseUrl(String ip, String port) => '$ip:$port';
+  static String cameraStreamUrl(String ip, String port) =>
+      'http://$ip:$port/camera/stream';
+  static String velocityWebSocketUrl(String ip, String port) =>
+      'ws://$ip:$port/robot/velocity';
+  static String mapUrl(String ip, String port) =>
+      'http://$ip:$port/map?map_name=turtlebot3_house';
+  static String goalUrl(String ip, String port) =>
+      'http://$ip:$port/robot/goal';
+  static String positionUrl(String ip, String port) =>
+      'http://$ip:$port/robot/position';
 
   // Map-specific constants
   static const double mapResolution = 19.2;
@@ -20,10 +23,11 @@ class AppConfig {
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     colorScheme: ColorScheme.light(
-      primary: Colors.blue,
-      secondary: Colors.blueAccent,
-      inversePrimary: Colors.blue,
+      primary: Color(0xFF3DA9BA), // #3DA9BA
+      secondary: Color(0xFF8DD2D5), // #8DD2D5
+      inversePrimary: Color(0xFF3DA9BA), // #3DA9BA
       surface: Colors.white,
+      onSurface: Colors.grey[900]!,
     ),
     useMaterial3: true,
   );
@@ -32,10 +36,11 @@ class AppConfig {
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     colorScheme: ColorScheme.dark(
-      primary: Colors.blue,
-      secondary: Colors.blueAccent,
-      inversePrimary: Colors.blue,
+      primary: Color(0xFF3DA9BA), // #3DA9BA
+      secondary: Color(0xFF8DD2D5), // #8DD2D5
+      inversePrimary: Color(0xFF136884), // #3DA9BA
       surface: Colors.grey[900]!,
+      onSurface: Colors.white,
     ),
     useMaterial3: true,
   );

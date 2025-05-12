@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../controllers/map_controller.dart';
+import '../services/settings_service.dart';
 
 class MapTab extends StatefulWidget {
   const MapTab({super.key});
@@ -18,7 +19,8 @@ class _MapTabState extends State<MapTab> with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
-    controller = MapController();
+    final settings = Provider.of<SettingsService>(context, listen: false);
+    controller = MapController(settings);
     controller.loadMap();
     controller.startPositionUpdates();
   }
@@ -75,7 +77,7 @@ class _MapTabState extends State<MapTab> with AutomaticKeepAliveClientMixin {
                         top: map.selectedPixel!.dy - 30,
                         child: Icon(
                           Icons.location_pin,
-                          color: colors.inversePrimary,
+                          color: colors.primary,
                           size: 40,
                         ),
                       ),
@@ -85,7 +87,7 @@ class _MapTabState extends State<MapTab> with AutomaticKeepAliveClientMixin {
                         top: map.robotPixel!.dy - 10,
                         child: Icon(
                           Icons.smart_toy,
-                          color: colors.inversePrimary,
+                          color: colors.primary,
                           size: 20,
                         ),
                       ),

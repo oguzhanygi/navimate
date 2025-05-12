@@ -5,8 +5,11 @@ import 'package:image/image.dart' as img;
 
 import '../services/map_service.dart';
 import '../config/app_config.dart';
+import '../services/settings_service.dart';
 
 class MapController extends ChangeNotifier {
+  final SettingsService settings;
+  final MapService mapService;
   File? mapFile;
   img.Image? mapImage;
   Offset? robotPixel;
@@ -17,12 +20,14 @@ class MapController extends ChangeNotifier {
   final GlobalKey mainImageKey = GlobalKey();
   Timer? _positionTimer;
 
+  MapController(this.settings) : mapService = MapService(settings);
+
   Future<void> loadMap() async {
     isLoading = true;
     errorMessage = '';
     notifyListeners();
 
-    final result = await MapService.fetchMapImage();
+    final result = await mapService.fetchMapImage();
     if (result != null) {
       mapFile = result.$1;
       mapImage = result.$2;
@@ -48,7 +53,7 @@ class MapController extends ChangeNotifier {
   Future<void> updateRobotPosition() async {
     if (mapImage == null || mainImageKey.currentContext == null) return;
 
-    final pos = await MapService.fetchRobotPosition();
+    final pos = await mapService.fetchRobotPosition();
     if (pos == null) return;
 
     final (x, y) = pos;
@@ -89,9 +94,9 @@ class MapController extends ChangeNotifier {
     }
 
     final pixel = mapImage!.getPixel(pixelX.toInt(), pixelY.toInt());
-    final r = (pixel >> 16) & 0xFF;
-    final g = (pixel >> 8) & 0xFF;
-    final b = pixel & 0xFF;
+    final r = pixel.r;
+    final g = pixel.g;
+    final b = pixel.b;
 
     final isWhite = r == 254 && g == 254 && b == 254;
     if (!isWhite) return;
@@ -104,6 +109,6 @@ class MapController extends ChangeNotifier {
         (mapImage!.height - pixelY) / AppConfig.mapResolution +
         AppConfig.mapOriginY;
 
-    await MapService.sendGoal(goalX, goalY);
+    await mapService.sendGoal(goalX, goalY);
   }
 }

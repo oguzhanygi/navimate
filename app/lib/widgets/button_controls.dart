@@ -38,7 +38,7 @@ class ButtonControls extends StatelessWidget {
         icon: Icon(icon, size: 40),
         style: IconButton.styleFrom(
           backgroundColor: colors.primary,
-          foregroundColor: colors.onPrimary,
+          foregroundColor: colors.surface,
           padding: const EdgeInsets.all(25),
         ),
         onPressed: () => onCommand(linear, angular),
