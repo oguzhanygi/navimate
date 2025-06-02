@@ -9,3 +9,5 @@ def pgm_to_png(pgm_path, png_path=None):
         png_path = pgm_path.rsplit('.', 1)[0] + '.png'
     img.save(png_path)
     print(f"Saved: {png_path}")
+    
+    return png_path

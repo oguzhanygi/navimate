@@ -3,5 +3,7 @@ httpx
 uvicorn
 uvicorn[standard]
 PyYAML
-numpy
+numpy<2
 PILLOW
+opencv-python
+catkin-pkg

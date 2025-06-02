@@ -5,3 +5,5 @@ services:
     ports:
       - "8000:8000"
       - "8080:8080"
+    volumes:
+      - ./maps:/root/maps
