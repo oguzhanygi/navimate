@@ -61,7 +61,10 @@ class _SettingsDrawerState extends State<SettingsDrawer> {
               children: [
                 Icon(Icons.settings, size: 24, color: colorScheme.surface),
                 SizedBox(width: 12),
-                Text("Settings", style: TextStyle(fontSize: 20, color: colorScheme.surface)),
+                Text(
+                  "Settings",
+                  style: TextStyle(fontSize: 20, color: colorScheme.surface),
+                ),
               ],
             ),
           ),
