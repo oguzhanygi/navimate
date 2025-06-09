@@ -10,12 +10,14 @@ import '../services/settings_service.dart';
 class MapController extends ChangeNotifier {
   final SettingsService settings;
   final MapService mapService;
+  String currentMapName = 'turtlebot3_house';
   File? mapFile;
   img.Image? mapImage;
   Offset? robotPixel;
   Offset? selectedPixel;
   bool isLoading = false;
   String errorMessage = '';
+  bool hasActiveGoal = false;
 
   final GlobalKey mainImageKey = GlobalKey();
   Timer? _positionTimer;
@@ -27,7 +29,7 @@ class MapController extends ChangeNotifier {
     errorMessage = '';
     notifyListeners();
 
-    final result = await mapService.fetchMapImage();
+    final result = await mapService.fetchMapImage(currentMapName);
     if (result != null) {
       mapFile = result.$1;
       mapImage = result.$2;
@@ -101,14 +103,35 @@ class MapController extends ChangeNotifier {
     final isWhite = r == 254 && g == 254 && b == 254;
     if (!isWhite) return;
 
+    // Show marker immediately
     selectedPixel = localPos;
+    hasActiveGoal = true;
     notifyListeners();
+
+    // Cancel previous goal if there is one
+    if (hasActiveGoal) {
+      await mapService.cancelGoal();
+    }
 
     final goalX = pixelX / AppConfig.mapResolution + AppConfig.mapOriginX;
     final goalY =
         (mapImage!.height - pixelY) / AppConfig.mapResolution +
         AppConfig.mapOriginY;
 
-    await mapService.sendGoal(goalX, goalY);
+    final sent = await mapService.sendGoal(goalX, goalY);
+
+    // If sending goal failed, clear marker and FAB
+    if (!sent) {
+      hasActiveGoal = false;
+      selectedPixel = null;
+      notifyListeners();
+    }
+  }
+
+  Future<void> cancelGoal() async {
+    await mapService.cancelGoal();
+    hasActiveGoal = false;
+    selectedPixel = null;
+    notifyListeners();
   }
 }

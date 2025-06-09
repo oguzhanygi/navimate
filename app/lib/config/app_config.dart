@@ -7,12 +7,26 @@ class AppConfig {
       'http://$ip:$port/camera/stream';
   static String velocityWebSocketUrl(String ip, String port) =>
       'ws://$ip:$port/robot/velocity';
-  static String mapUrl(String ip, String port) =>
-      'http://$ip:$port/map?map_name=turtlebot3_house';
+  static String mapDownloadUrl(String ip, String port, String mapName) =>
+      'http://$ip:$port/map/download?map_name=$mapName';
+  static String mapListUrl(String ip, String port) =>
+      'http://$ip:$port/map/list';
+  static String mapChangeUrl(String ip, String port) =>
+      'http://$ip:$port/map/change';
+  static String mappingStartUrl(String ip, String port) =>
+      'http://$ip:$port/mapping/start';
+  static String mappingStopUrl(String ip, String port) =>
+      'http://$ip:$port/mapping/stop';
+  static String mapSaveUrl(String ip, String port) =>
+      'http://$ip:$port/mapping/save';
+  static String mappingStreamUrl(String ip, String port) =>
+      'http://$ip:$port/mapping/stream';
   static String goalUrl(String ip, String port) =>
       'http://$ip:$port/robot/goal';
   static String positionUrl(String ip, String port) =>
       'http://$ip:$port/robot/position';
+  static String cancelGoalUrl(String ip, String port) =>
+      'http://$ip:$port/robot/cancel';
 
   // Map-specific constants
   static const double mapResolution = 19.2;
