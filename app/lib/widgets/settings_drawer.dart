@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 
 import '../services/settings_service.dart';
 
+/// A drawer widget that provides access to app settings such as connection,
+/// controls, and theme options.
 class SettingsDrawer extends StatefulWidget {
   const SettingsDrawer({super.key});
 
@@ -18,6 +20,7 @@ class _SettingsDrawerState extends State<SettingsDrawer> {
   bool _ipChanged = false;
   bool _portChanged = false;
 
+  /// Initializes controllers and listeners for the settings fields.
   @override
   void initState() {
     super.initState();
@@ -39,6 +42,7 @@ class _SettingsDrawerState extends State<SettingsDrawer> {
     });
   }
 
+  /// Disposes controllers to free resources.
   @override
   void dispose() {
     _ipController.dispose();
@@ -46,6 +50,7 @@ class _SettingsDrawerState extends State<SettingsDrawer> {
     super.dispose();
   }
 
+  /// Builds the settings drawer UI, including connection, controls, and theme sections.
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -84,6 +89,7 @@ class _SettingsDrawerState extends State<SettingsDrawer> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(height: 12),
+                          /// Text field for editing the robot/server IP address.
                           TextField(
                             decoration: InputDecoration(
                               labelText: 'IP Address',
@@ -108,6 +114,7 @@ class _SettingsDrawerState extends State<SettingsDrawer> {
                             controller: _ipController,
                           ),
                           SizedBox(height: 12),
+                          /// Text field for editing the robot/server port.
                           TextField(
                             decoration: InputDecoration(
                               labelText: 'Port',
@@ -153,6 +160,7 @@ class _SettingsDrawerState extends State<SettingsDrawer> {
                   builder:
                       (_, settings, __) => Column(
                         children: [
+                          /// Radio button for selecting button control mode.
                           RadioListTile<ControlMode>(
                             title: const Text(
                               "Buttons",
@@ -163,6 +171,7 @@ class _SettingsDrawerState extends State<SettingsDrawer> {
                             onChanged:
                                 (value) => settings.updateControlMode(value!),
                           ),
+                          /// Radio button for selecting joystick control mode.
                           RadioListTile<ControlMode>(
                             title: const Text(
                               "Joystick",
@@ -185,6 +194,7 @@ class _SettingsDrawerState extends State<SettingsDrawer> {
                   builder:
                       (_, settings, __) => Column(
                         children: [
+                          /// Radio button for system theme mode.
                           RadioListTile<ThemeMode>(
                             title: const Text(
                               "System",
@@ -194,6 +204,7 @@ class _SettingsDrawerState extends State<SettingsDrawer> {
                             groupValue: settings.themeMode,
                             onChanged: (value) => settings.updateTheme(value!),
                           ),
+                          /// Radio button for light theme mode.
                           RadioListTile<ThemeMode>(
                             title: const Text(
                               "Light",
@@ -203,6 +214,7 @@ class _SettingsDrawerState extends State<SettingsDrawer> {
                             groupValue: settings.themeMode,
                             onChanged: (value) => settings.updateTheme(value!),
                           ),
+                          /// Radio button for dark theme mode.
                           RadioListTile<ThemeMode>(
                             title: const Text(
                               "Dark",
@@ -212,6 +224,7 @@ class _SettingsDrawerState extends State<SettingsDrawer> {
                             groupValue: settings.themeMode,
                             onChanged: (value) => settings.updateTheme(value!),
                           ),
+                          /// Switch for enabling/disabling dynamic color.
                           SwitchListTile(
                             title: const Text(
                               "Dynamic colors",

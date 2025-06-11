@@ -4,7 +4,9 @@ import '../widgets/settings_drawer.dart';
 import 'camera_tab.dart';
 import 'map_tab.dart';
 
+/// The main home screen of the app, providing navigation between Camera and Map tabs.
 class HomeScreen extends StatelessWidget {
+  /// Creates a [HomeScreen].
   const HomeScreen({super.key});
 
   @override

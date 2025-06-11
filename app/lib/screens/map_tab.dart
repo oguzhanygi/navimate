@@ -5,6 +5,7 @@ import '../controllers/map_controller.dart';
 import '../services/map_service.dart';
 import '../services/settings_service.dart';
 
+/// The tab that displays the map, robot position, and allows goal setting and map switching.
 class MapTab extends StatefulWidget {
   const MapTab({super.key});
 
@@ -12,6 +13,7 @@ class MapTab extends StatefulWidget {
   State<MapTab> createState() => _MapTabState();
 }
 
+/// State for [MapTab], manages map loading, robot position updates, and user interactions.
 class _MapTabState extends State<MapTab> with AutomaticKeepAliveClientMixin {
   bool _isZoomingOrPanning = false;
 
@@ -20,21 +22,27 @@ class _MapTabState extends State<MapTab> with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
+    // We use listen: false here because this is called only once at init,
+    // and we don't want this widget to rebuild if SettingsService changes.
     final settings = Provider.of<SettingsService>(context, listen: false);
     controller = MapController(settings);
     controller.loadMap();
     controller.startPositionUpdates();
   }
 
+  /// Stops robot position updates when the widget is disposed.
   @override
   void dispose() {
     controller.stopPositionUpdates();
     super.dispose();
   }
 
+  /// Keeps the map tab alive when switching tabs.
   @override
   bool get wantKeepAlive => true;
 
+  /// Shows a dialog for selecting a map from the available list.
+  /// If a new map is selected, attempts to switch to it and reloads the map.
   Future<void> _showMapSelectionDialog(
     BuildContext context,
     MapController mapController,
@@ -50,6 +58,10 @@ class _MapTabState extends State<MapTab> with AutomaticKeepAliveClientMixin {
       return;
     }
 
+    // Show a dialog with a grid of available maps.
+    // Each map is displayed as a thumbnail (loaded asynchronously) and its name.
+    // The currently selected map is visually highlighted.
+    // When a map is tapped, the dialog closes and returns the selected map name.
     final selected = await showDialog<String>(
       context: context,
       builder: (context) {
@@ -89,6 +101,9 @@ class _MapTabState extends State<MapTab> with AutomaticKeepAliveClientMixin {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     alignment: Alignment.center,
+                    // Use FutureBuilder to asynchronously load the map thumbnail.
+                    // This allows the dialog to show a loading spinner for each map until its image is fetched.
+                    // If the image fails to load, show a placeholder icon.
                     child: FutureBuilder(
                       future: mapService.fetchMapImage(mapName),
                       builder: (context, snapshot) {
@@ -153,6 +168,8 @@ class _MapTabState extends State<MapTab> with AutomaticKeepAliveClientMixin {
       },
     );
 
+    // If a new map was selected, attempt to switch to it and reload the map.
+    // Show a snackbar to indicate success or failure.
     if (selected != null && selected != current) {
       final changed = await mapService.changeMap(selected);
       if (changed) {
@@ -172,10 +189,14 @@ class _MapTabState extends State<MapTab> with AutomaticKeepAliveClientMixin {
     }
   }
 
+  /// Builds the map tab UI, including the map image, robot and goal markers, and map switching.
   @override
   Widget build(BuildContext context) {
     super.build(context);
 
+    // We use ChangeNotifierProvider.value here because the controller is created
+    // and owned by this State object, not by the Provider. This avoids issues
+    // with disposing the controller at the wrong time.
     return ChangeNotifierProvider.value(
       value: controller,
       child: Consumer<MapController>(

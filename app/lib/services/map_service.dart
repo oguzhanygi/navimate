@@ -7,11 +7,17 @@ import 'package:path_provider/path_provider.dart';
 import '../config/app_config.dart';
 import '../services/settings_service.dart';
 
+/// Provides methods for interacting with the robot's map and navigation services.
 class MapService {
+  /// The settings service used for configuration.
   final SettingsService settings;
 
+  /// Creates a [MapService] with the given [settings].
   MapService(this.settings);
 
+  /// Fetches the map image for the given [mapName].
+  ///
+  /// Returns a [File] and decoded [img.Image] tuple if successful, or null on failure.
   Future<(File, img.Image)?> fetchMapImage(String mapName) async {
     try {
       final response = await http.get(
@@ -32,6 +38,9 @@ class MapService {
     return null;
   }
 
+  /// Fetches the robot's current position as an (x, y) tuple.
+  ///
+  /// Returns null if the position could not be retrieved.
   Future<(double, double)?> fetchRobotPosition() async {
     try {
       final response = await http.get(
@@ -47,6 +56,9 @@ class MapService {
     return null;
   }
 
+  /// Sends a navigation goal to the robot at position ([x], [y]).
+  ///
+  /// Returns true if the goal was sent successfully.
   Future<bool> sendGoal(double x, double y) async {
     try {
       final response = await http.post(
@@ -60,6 +72,9 @@ class MapService {
     }
   }
 
+  /// Cancels the current navigation goal.
+  ///
+  /// Returns true if the goal was cancelled successfully.
   Future<bool> cancelGoal() async {
     try {
       final response = await http.get(
@@ -71,6 +86,9 @@ class MapService {
     }
   }
 
+  /// Starts the mapping process on the robot.
+  ///
+  /// Returns true if mapping started successfully.
   Future<bool> startMapping() async {
     try {
       final response = await http.post(
@@ -82,6 +100,9 @@ class MapService {
     }
   }
 
+  /// Stops the mapping process on the robot.
+  ///
+  /// Returns true if mapping stopped successfully.
   Future<bool> stopMapping() async {
     try {
       final response = await http.post(
@@ -94,6 +115,7 @@ class MapService {
   }
 
   /// Checks if mapping is active by attempting to connect to the mapping stream.
+  ///
   /// Returns true if the stream is available (status 200), false otherwise.
   Future<bool> isMappingActive() async {
     try {
@@ -106,6 +128,9 @@ class MapService {
     }
   }
 
+  /// Saves the current mapping with the given [mapName].
+  ///
+  /// Returns true if the map was saved successfully.
   Future<bool> saveMapping(String mapName) async {
     try {
       final response = await http.post(
@@ -119,6 +144,9 @@ class MapService {
     }
   }
 
+  /// Fetches the list of available maps from the robot.
+  ///
+  /// Returns a list of map names (without the .yaml extension).
   Future<List<String>> fetchMapList() async {
     try {
       final response = await http.get(
@@ -137,6 +165,9 @@ class MapService {
     return [];
   }
 
+  /// Changes the currently active map to [mapName].
+  ///
+  /// Returns true if the map was changed successfully.
   Future<bool> changeMap(String mapName) async {
     try {
       final response = await http.post(

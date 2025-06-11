@@ -13,6 +13,11 @@ void main() async {
   await settings.loadSettings();
 
   runApp(
+    // MultiProvider is used to provide multiple objects (services) to the widget tree.
+    // - SettingsService is a ChangeNotifier and is provided as a singleton.
+    // - RosSocketService is created as a ProxyProvider, which means it depends on SettingsService.
+    //   Whenever the IP or port changes in SettingsService, a new RosSocketService is created.
+    //   The dispose callback ensures the WebSocket connection is closed when the provider is disposed.
     MultiProvider(
       providers: [
         ChangeNotifierProvider<SettingsService>.value(value: settings),
@@ -36,8 +41,11 @@ class NaviMateApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return DynamicColorBuilder(
       builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
+        // Provider.of is used here to listen for changes in SettingsService.
+        // This ensures that theme changes, dynamic color toggling, etc., are reflected in the UI.
         final settings = Provider.of<SettingsService>(context);
 
+        // The logic below selects the theme based on user settings and platform support for dynamic color.
         final light =
             settings.useDynamicColor && lightDynamic != null
                 ? ThemeData(colorScheme: lightDynamic, useMaterial3: true)

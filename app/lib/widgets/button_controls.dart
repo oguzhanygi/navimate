@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 
+/// A widget that displays button controls for robot navigation.
+///
+/// Provides up, down, left, right, and stop buttons, and calls [onCommand]
+/// with the appropriate linear and angular velocities when pressed.
 class ButtonControls extends StatelessWidget {
+  /// Callback when a navigation button is pressed.
+  /// [linear] and [angular] represent the velocity commands.
   final void Function(double linear, double angular) onCommand;
 
+  /// Creates a [ButtonControls] widget.
   const ButtonControls({super.key, required this.onCommand});
 
   @override
@@ -26,6 +33,7 @@ class ButtonControls extends StatelessWidget {
     );
   }
 
+  /// Builds a navigation button with the given [icon], [linear], and [angular] values.
   Widget _buildNavButton(
     ColorScheme colors,
     IconData icon,

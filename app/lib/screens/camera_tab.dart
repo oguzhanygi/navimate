@@ -10,7 +10,9 @@ import '../services/ros_socket_service.dart';
 import '../services/settings_service.dart';
 import '../services/map_service.dart';
 
+/// The camera tab, showing the camera stream and mapping controls.
 class CameraTab extends StatefulWidget {
+  /// Creates a [CameraTab].
   const CameraTab({super.key});
 
   @override
@@ -29,6 +31,10 @@ class _CameraTabState extends State<CameraTab> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    // - We use listen: false here because we only want to grab the current value,
+    //   not rebuild this widget when the provider changes.
+    // - RosSocketService is provided as a ProxyProvider in main.dart, so it is
+    //   automatically updated if the SettingsService changes.
     _rosService = Provider.of<RosSocketService>(context, listen: false);
     _settings = Provider.of<SettingsService>(context, listen: false);
     _mapService = MapService(_settings);
@@ -36,14 +42,17 @@ class _CameraTabState extends State<CameraTab> {
     _mappingController.checkMappingStatus();
   }
 
+  /// Sends a velocity command to the robot.
   void _sendCommand(double linear, double angular) {
     _rosService?.sendCommand(linear, angular);
   }
 
+  /// Builds the camera stream page.
   Widget _buildCameraPage(SettingsService settings) {
     return StreamWidget(AppConfig.cameraStreamUrl(settings.ip, settings.port));
   }
 
+  /// Builds the mapping page, showing mapping controls and stream.
   Widget _buildMappingPage(BuildContext context) {
     return Consumer<MappingController>(
       builder: (context, mappingController, _) {
@@ -67,6 +76,7 @@ class _CameraTabState extends State<CameraTab> {
     );
   }
 
+  /// Builds the page indicator for the camera/mapping pages.
   Widget _buildPageIndicator(int pageCount) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -90,6 +100,9 @@ class _CameraTabState extends State<CameraTab> {
 
   @override
   void dispose() {
+    // Note: _rosService is provided by Provider and disposed in main.dart's ProxyProvider.
+    // Calling close() here is safe because the service's close() method is idempotent,
+    // but be careful if you change the disposal logic in the future.
     _rosService?.close();
     _pageController.dispose();
     super.dispose();
@@ -100,6 +113,9 @@ class _CameraTabState extends State<CameraTab> {
     final settings = Provider.of<SettingsService>(context);
     final isJoystickMode = settings.controlMode == ControlMode.joystick;
 
+    // We use ChangeNotifierProvider.value here because _mappingController is created
+    // in didChangeDependencies and reused for the lifetime of this widget.
+    // This avoids creating a new controller on every build.
     return ChangeNotifierProvider.value(
       value: _mappingController,
       child: SafeArea(

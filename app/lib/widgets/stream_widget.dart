@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mjpeg/flutter_mjpeg.dart';
 
+/// A widget that displays an MJPEG video stream from the given [streamUrl].
+///
+/// Shows an error message if the stream is unavailable.
 class StreamWidget extends StatelessWidget {
+  /// The URL of the MJPEG stream to display.
   final String streamUrl;
 
+  /// Creates a [StreamWidget] for the given [streamUrl].
   const StreamWidget(this.streamUrl, {super.key});
 
   @override
