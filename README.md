@@ -1,5 +1,7 @@
 # NaviMate
 
+![NaviMate Banner](assets/banner.png)
+
 NaviMate is a Flutter application designed to empower people with disabilities to control a helper robot in their home. The app provides an interface for sending navigation commands, monitoring the robot’s camera, and managing maps, making it easier for users to request the robot to fetch or deliver items as needed.
 
 ---
@@ -13,6 +15,22 @@ NaviMate is a Flutter application designed to empower people with disabilities t
 - **Map Management:** Switch between saved maps and view map thumbnails.
 - **Settings Drawer:** Easily configure robot connection (IP/port), control mode, and app theme (including dynamic color support).
 - **Robust Feedback:** Get clear feedback on connection status, map loading, and command success/failure.
+
+---
+
+## Screenshots
+
+<p align="center">
+  <img src="assets/screenshots/camera_view.png" alt="NaviMate Home" width="250"/>
+  <img src="assets/screenshots/button_controls.png" alt="Alternative Controls" width="250"/>
+  <img src="assets/screenshots/map.png" alt="Map & Goal" width="250"/>
+  <img src="assets/screenshots/zoomed_map.png" alt="Zoomed Map" width="250"/>
+  <img src="assets/screenshots/discover_map.png" alt="Map Discovery" width="250"/>
+  <img src="assets/screenshots/save_map.png" alt="Save Map" width="250"/>
+  <img src="assets/screenshots/overwrite.png" alt="Overwrite" width="250"/>
+  <img src="assets/screenshots/select_map.png" alt="Map Selection" width="250"/>
+  <img src="assets/screenshots/settings.png" alt="Settings" width="250"/>
+</p>
 
 ---
 
