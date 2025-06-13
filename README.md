@@ -21,15 +21,14 @@ NaviMate is a Flutter application designed to empower people with disabilities t
 ## Screenshots
 
 <p align="center">
-  <img src="assets/screenshots/camera_view.png" alt="NaviMate Home" width="250"/>
-  <img src="assets/screenshots/button_controls.png" alt="Alternative Controls" width="250"/>
-  <img src="assets/screenshots/map.png" alt="Map & Goal" width="250"/>
-  <img src="assets/screenshots/zoomed_map.png" alt="Zoomed Map" width="250"/>
-  <img src="assets/screenshots/discover_map.png" alt="Map Discovery" width="250"/>
-  <img src="assets/screenshots/save_map.png" alt="Save Map" width="250"/>
-  <img src="assets/screenshots/overwrite.png" alt="Overwrite" width="250"/>
-  <img src="assets/screenshots/select_map.png" alt="Map Selection" width="250"/>
-  <img src="assets/screenshots/settings.png" alt="Settings" width="250"/>
+  <img src="assets/screenshots/camera_view.png" alt="NaviMate Home" width="200"/>
+  <img src="assets/screenshots/button_controls.png" alt="Alternative Controls" width="200"/>
+  <img src="assets/screenshots/map.png" alt="Map & Goal" width="200"/>
+  <img src="assets/screenshots/discover_map.png" alt="Map Discovery" width="200"/>
+  <img src="assets/screenshots/save_map.png" alt="Save Map" width="200"/>
+  <img src="assets/screenshots/overwrite.png" alt="Overwrite" width="200"/>
+  <img src="assets/screenshots/select_map.png" alt="Map Selection" width="200"/>
+  <img src="assets/screenshots/settings.png" alt="Settings" width="200"/>
 </p>
 
 ---
